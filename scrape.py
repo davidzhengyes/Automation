@@ -25,7 +25,10 @@ def launchBrowser():
 driver=launchBrowser()
 elem = driver.find_element(By.CSS_SELECTOR, "#gb > div > div:nth-child(1) > div > div:nth-child(1) > a")
 # elem.click()
+
 print(elem)
+
+
 x=1
 while True:
     print(x,elem.get_attribute("href"))
