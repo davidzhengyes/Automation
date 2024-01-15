@@ -18,13 +18,15 @@ notRobot.click()
 ruski = driver.find_element(By.CSS_SELECTOR,"#content > div > div > div.mainContainer > div > div.FloatingContainer.Notices > div > div > div > a")
 ruski.click()
 time.sleep(3)
-Accts = driver.find_elements(By.CLASS_NAME,"muted")
+Accts = driver.find_elements(By.CLASS_NAME,'marketIndexItem--otherInfo')
 
 print(Accts)
 print(Accts[0])
 print("a")
 
-print(Accts[0].get_attribute("innerText"))
+# print(Accts[0].get_attribute('textContent').strip())
+for acct in Accts:
+    print(acct.text.split(" ")[0])
 
 print("b")
 
