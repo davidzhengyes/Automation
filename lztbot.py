@@ -20,9 +20,11 @@ ruski.click()
 time.sleep(3)
 Accts = driver.find_elements(By.CLASS_NAME,"muted")
 
+print(Accts)
 print(Accts[0])
 print("a")
-print(Accts[0].get_attribute("class"))
+
+print(Accts[0].get_attribute("innerText"))
 
 print("b")
 
