@@ -24,15 +24,20 @@ def launchBrowser():
 
 driver=launchBrowser()
 elem = driver.find_element(By.CSS_SELECTOR, "#gb > div > div:nth-child(1) > div > div:nth-child(1) > a")
-# elem.click()
+elem.click()
 
 print(elem)
 
 
 x=1
 while True:
-    print(x,elem.get_attribute("href"))
+    time.sleep(1)
+    print(x)
     x+=1
+    elem = driver.find_element(By.CSS_SELECTOR, "#gb > div > div:nth-child(1) > div > div:nth-child(1) > a")
+    #GOOD. THIS MEANS DRIVER IS DYNAMIC, CHANGES WHENEVER WEBPAGE CHANGES. (or always searches CURRENT html)
+    # print(x,elem.get_attribute("href"))
+    # x+=1
 
 
 #marketItem--91502858 > div.marketIndexItem--topContainer > h4 > a > div > div
