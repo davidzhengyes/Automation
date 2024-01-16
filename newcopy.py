@@ -3,6 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import os 
 import time
 import ast
@@ -38,6 +40,10 @@ else:
 
 
 def scanNewAccts():
+    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#title > div > span"))).click()
+    # resetbtn = driver.find_element(By.CSS_SELECTOR,"#title > div > span")
+    # resetbtn.click()
+    time.sleep(2)
     Accts = driver.find_elements(By.CLASS_NAME,'marketIndexItem.PopupItemLink.PopupItemLinkActive')
     print(Accts)
     print(Accts[0])
@@ -66,7 +72,9 @@ def scanNewAccts():
         else:
             visited.add(acctID)
             print("New account posted by", seller, timesinceposting, acctID)
-        
+        file=open("visited.txt","w")
+        file.write(str(visited))
+        file.close()
         #then overwrite everything in visited set into visited.txt 
     
 
