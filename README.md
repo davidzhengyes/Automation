@@ -7,4 +7,7 @@ Someone asked me to make this. Work in progress, very specific instructions are 
 <br>
 Writes seen postings to a text file, so that only new ones have a special print line
 <br>
-Those can be discord webhooked.
+Discord webhook implemented.
+<br> 
+Params.json probably coming, as well as .exe as to not have dependencies.
+
