@@ -12,9 +12,9 @@ import time
 import ast
 from seleniumbase import SB
 
-options = uc.ChromeOptions() 
-options.headless = False
-driver = uc.Chrome(options=options) 
+# options = uc.ChromeOptions() 
+# options.headless = False
+# driver = uc.Chrome(options=options) 
 
 
 # def launchBrowser():
@@ -24,19 +24,23 @@ driver = uc.Chrome(options=options)
 
 # driver=launchBrowser()
 
-with driver:
-    # Go to the target website
-    driver.get("https://lzt.market/steam/rust?hours_played[252490]=800&country[]=Canada&country[]=United%20States&mm_ban=nomatter&order_by=price_to_up")
-# Wait for security check
+# with driver:
+#     # Go to the target website
+#     driver.get("https://lzt.market/steam/rust?hours_played[252490]=800&country[]=Canada&country[]=United%20States&mm_ban=nomatter&order_by=price_to_up")
+# # Wait for security check
 
 
-notRobot = driver.find_element(By.CSS_SELECTOR,"body > div > form > button")
-notRobot.click()
+    
+print("DRIVER RECONNECTED!")
+
+
+# notRobot = sb.find_element(By.CSS_SELECTOR,"body > div > form > button")
+# notRobot.click()
 
 # ruski = driver.find_element(By.CSS_SELECTOR,"#content > div > div > div.mainContainer > div > div.FloatingContainer.Notices > div > div > div > a")
 # ruski.click()
-time.sleep(4)
-time.sleep(3)
+# time.sleep(4)
+# time.sleep(3)
 import atexit
 #Accts = driver.find_elements(By.CLASS_NAME,'marketIndexItem--otherInfo')
 def exit_handler():
@@ -55,11 +59,11 @@ else:
 
 
 def scanNewAccts():
-    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#title > div > span"))).click()
-    # resetbtn = driver.find_element(By.CSS_SELECTOR,"#title > div > span")
-    # resetbtn.click()
+    WebDriverWait(sb, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#title > div > span"))).click()
+    resetbtn = sb.driver.find_element(By.CSS_SELECTOR,"#title > div > span")
+    resetbtn.click()
     time.sleep(2)
-    Accts = driver.find_elements(By.CLASS_NAME,'marketIndexItem.PopupItemLink.PopupItemLinkActive')
+    Accts = sb.find_elements(By.CLASS_NAME,'marketIndexItem.PopupItemLink.PopupItemLinkActive')
     print(Accts)
     print(Accts[0])
     print("a")
@@ -94,14 +98,21 @@ def scanNewAccts():
         file.close()
         #then overwrite everything in visited set into visited.txt 
     
+with SB(uc=True) as sb:
+    sb.driver.uc_open_with_reconnect(
+        "https://lzt.market/steam/rust?hours_played[252490]=800&country[]=Canada&country[]=United%20States&mm_ban=nomatter&order_by=price_to_up",
+        reconnect_time=30
+    )
+
+    print("DRIVER RECON")
+    while True:
+    
+        scanNewAccts()
+        
+        print("ITERATION \n")
+        print(visited)
+
+        time.sleep(30)
 
 print("b")
 
-while True:
-    
-    scanNewAccts()
-    
-    print("ITERATION \n")
-    print(visited)
-
-    time.sleep(30)

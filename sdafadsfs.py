@@ -1,10 +1,9 @@
-myset=set()
+from seleniumbase import SB
 
-myset.add(1)
-myset.add(2)
-myset.add(1)
-myset.add("ooo")
-print(myset)
+with SB(uc=True) as sb:
+    sb.driver.uc_open_with_reconnect(
+        "https://visa.vfsglobal.com/are/en/fra/login",
+        reconnect_time=12
+    )
 
-if "ooo" in myset:
-    print("ooo in myset")
+print("DRIVER RECON")
