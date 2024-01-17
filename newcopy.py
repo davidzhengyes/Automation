@@ -5,13 +5,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from discord_webhook import DiscordWebhook
 import os 
 import time
 import ast
 
 def launchBrowser():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    driver.get("https://lzt.market/telegram/?order_by=pdate_to_down_upload")
+    driver.get("https://lzt.market/steam/rust?hours_played[252490]=800&country[]=Canada&country[]=United%20States&mm_ban=nomatter&order_by=price_to_up")
     return driver
 
 driver=launchBrowser()
@@ -71,7 +72,9 @@ def scanNewAccts():
             pass
         else:
             visited.add(acctID)
-            print("New account posted by", seller, timesinceposting, acctID)
+            msg="New account posted by"+ seller + timesinceposting + acctID + " @SATCHELPOOCH"
+            webhook = DiscordWebhook(url='https://discordapp.com/api/webhooks/1197037155554443314/uxp9jMz5aPyhQaA0lcdq1MSXCEC-5JupagoCU6H5ufAwXNES4no0K2w_tryoYiKUBKqC', content=msg)
+            response = webhook.execute()
         file=open("visited.txt","w")
         file.write(str(visited))
         file.close()
