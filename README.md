@@ -3,11 +3,16 @@
 
 
 # Automation for Lzt.market
-Someone asked me to make this. Work in progress, very specific instructions are currently needed to run this. Made with selenium, learned it in a few hours!
+
+**Cloudflare bypassed**
+<img src="https://github.com/davidzhengyes/Automation/blob/main/screenshot.png">
+
+
+Someone asked me to make this. Work in progress, very specific instructions are currently needed to run this. Made with selenium!
 <br>
 Writes seen postings to a text file, so that only new ones have a special print line
 <br>
 Discord webhook implemented.
 <br> 
-Params.json probably coming, as well as .exe as to not have dependencies.
+Params.json for search parameters, as well as .exe as to run easily.
 
